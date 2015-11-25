@@ -25,8 +25,9 @@ module ZeroPush
       :channel,
       :delete_channel
 
-    def client(auth_token = self.auth_token)
-      ZeroPush::Client.new(auth_token)
+    def client(opts={})
+      opts[:auth_token] ||= self.auth_token
+      ZeroPush::Client.new(opts)
     end
 
     def config
@@ -35,7 +36,7 @@ module ZeroPush
 
     def method_missing(method, *params, &block)
       if auth_tokens.is_a?(Hash) && auth_tokens.keys.include?(method)
-        self.client(auth_tokens[method])
+        self.client(auth_token: auth_tokens[method])
       else
         super
       end

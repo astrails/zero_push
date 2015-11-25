@@ -20,6 +20,11 @@ describe ZeroPush do
     it 'returns a client instance' do
       ZeroPush.client.class.must_equal ZeroPush::Client
     end
+
+    it 'should accept different url' do
+      client = ZeroPush.client(auth_token: "test-token", url: "https://example.com")
+      client.url.must_equal "https://example.com"
+    end
   end
 
   describe 'methods the module responds to' do

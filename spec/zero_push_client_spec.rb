@@ -4,7 +4,7 @@ require 'json'
 describe ZeroPush::Client do
 
   let(:auth_token){ ENV['AUTH_TOKEN'] }
-  let(:client){ ZeroPush.client(auth_token) }
+  let(:client){ ZeroPush.client(auth_token: auth_token) }
   let(:device_token) { 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' }
   before do
     stub_request(:post, "https://api.zeropush.com/register").
@@ -52,7 +52,7 @@ describe ZeroPush::Client do
         with(headers: {'Authorization'=>'Token token="not a valid token"'}).
         to_return(status: 401, body: '{"error": "unauthorized"}', headers: {'Content-Type' => 'application/json'})
 
-      client = ZeroPush.client('not a valid token')
+      client = ZeroPush.client(auth_token: 'not a valid token')
       client.verify_credentials.must_equal false
     end
   end

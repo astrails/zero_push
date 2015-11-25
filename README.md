@@ -2,6 +2,13 @@
 
 [![Build Status](http://img.shields.io/travis/ZeroPush/zero_push.svg)](https://travis-ci.org/ZeroPush/zero_push) [![Code Climate](https://codeclimate.com/github/ZeroPush/zero_push/badges/gpa.svg)](https://codeclimate.com/github/ZeroPush/zero_push) [![Gem Version](http://img.shields.io/gem/v/zero_push.svg)](http://rubygems.org/gems/zero_push)
 
+
+
+## Changed
+  ZeroPush.client now acceps hash:
+
+    client = ZeroPush.client(auth_token: "your-auth-token", url: "https://zeropush.pushwoosh.com")
+
 ## Installation
 
 Add this line to your application's Gemfile:
